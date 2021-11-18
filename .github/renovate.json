@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":maintainLockFilesWeekly",
+    ":rebaseStalePrs",
+    "docker:pinDigests",
+    "group:linters",
+    "group:recommended",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "includeForks": false,
+  "packageRules": [
+    {
+      "description": "Automerge trivial updates",
+      "matchUpdateTypes": ["patch", "digest", "lockFileMaintenance"],
+      "automerge": true
+    },
+    {
+      "description": "Group Kubernetes packages",
+      "matchPackagePatterns": ["^kubernetes/", "^k8s\\.gcr\\.io/"],
+      "groupName": "Kubernetes packages"
+    }
+  ]
+}
